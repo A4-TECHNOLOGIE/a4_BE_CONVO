@@ -12,6 +12,7 @@
         "main.ts",
         "README.md",
         "custom.ts", 
+        "_locales/fr/pxt-PlanetX-AI-strings.json",
         
     ],
     "testFiles": [
