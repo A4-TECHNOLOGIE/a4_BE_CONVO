@@ -1,6 +1,6 @@
 {
-    "name": "blocs_convoyeur",
-    "description": "",
+    "name": "convoyeur-a4",
+    "description": "Extension pour maquette Convoyeur de tri IA",
     "dependencies": {
         "core": "*",
         "radio": "*",
