@@ -1,4 +1,6 @@
 enum ButtonChoice {
+    A,
+    B,
     C,
     D
 }
@@ -10,39 +12,46 @@ namespace convoyeur {
     //%block="Lorsque bouton %button est appuyé"
     //%group='Boutons Poussoirs'
     export function onButtonPressed(button: ButtonChoice, handler: () => void) {
-        //Surveillance en arrière plan 
-        control.inBackground(function () {
-            let etatPrecedent = 1 // 1 = relâché (PullUp)
-            const pin = (button == ButtonChoice.C) ? DigitalPin.P13 : DigitalPin.P14
+        if (button == ButtonChoice.A) {
+            input.onButtonPressed(Button.A, handler)
+        } else if (button == ButtonChoice.B) {
+            input.onButtonPressed(Button.B, handler)
+        } else {
+            // Boutons C et D sur P13/P14 : surveillance en arrière-plan
+            control.inBackground(function () {
+                let etatPrecedent = 1 // 1 = relâché (PullUp) 
+                const pin = (button == ButtonChoice.C) ? DigitalPin.P13 : DigitalPin.P14
 
-            while (true) {
-                let etatActuel = pins.digitalReadPin(pin)
-
-                // Détection du front descendant (appui) : passe de 1 à 0
-                if (etatPrecedent == 1 && etatActuel == 0) {
-                    handler() // On exécute les blocs à l'intérieur
+                while (true) {
+                    let etatActuel = pins.digitalReadPin(pin)
+                    if (etatPrecedent == 1 && etatActuel == 0) {
+                        handler()
+                    }
+                    etatPrecedent = etatActuel
+                    basic.pause(50)
                 }
-
-                etatPrecedent = etatActuel
-                basic.pause(50) // Petite pause pour l'anti-rebond et libérer le processeur
-            }
-        })
+            })
+        }
     }
 
     //%block="Bouton %button appuyé" 
     //%group='Boutons Poussoirs'
     export function buttonPressed(button: ButtonChoice): boolean {
-        if (button == ButtonChoice.C) {
-            return pins.digitalReadPin(DigitalPin.P13) == 0; // Retourne true si pressé
+        if (button == ButtonChoice.A) {
+            return input.buttonIsPressed(Button.A)
+        } else if (button == ButtonChoice.B) {
+            return input.buttonIsPressed(Button.B)
+        } else if (button == ButtonChoice.C) {
+            return pins.digitalReadPin(DigitalPin.P13) == 0 // Retourne true si pressé
         } else {
-            return pins.digitalReadPin(DigitalPin.P14) == 0;
+            return pins.digitalReadPin(DigitalPin.P14) == 0
         }
     }
 
     //%group='Potentiomètre' color=#E67E91
-    //%block="Valeur potentiomètre"
+    //%block="Valeur potentiomètre en pourcentage"
     export function potentiometerValue() {
-        return pins.analogReadPin(AnalogPin.P2)
+        return pins.analogReadPin(AnalogPin.P2)/1024*100
     }
 
     //%group='Moteur' color=#86D17B
@@ -62,12 +71,6 @@ namespace convoyeur {
         pins.digitalWritePin(DigitalPin.P16, 0)
     }
 
-    //%block="Activer le moteur"
-    //%group='Moteur' color=#86D17B
-    export function startMotor() {
-        pins.digitalWritePin(DigitalPin.P15, 1)
-        pins.digitalWritePin(DigitalPin.P16, 0)
-    }
 
     //%block="Fixe l'angle du servo à %angle °"
     //%group='Servomoteur' color=#6CCAE6
@@ -380,7 +383,7 @@ namespace convoyeur {
         return new Strip(8, pin);
     }
 
-    //% block="Changer la couleur de l'anneau en %color"
+    //% block="Allumer l'anneau en %color"
     //% group='Anneau lumineux' 
     //% color=#D9BA75
     export function setRingColor(color: Colors) {
@@ -388,14 +391,6 @@ namespace convoyeur {
         strip.showColor(color)
     }
 
-    //% block="Allumer l'anneau"
-    //% group= 'Anneau lumineux'
-    //% color=#D9BA75
-    export function lightsON() {
-        let strip = create(DigitalPin.P8)
-        let color = Colors.White
-        strip.showColor(color)
-    }
 
     //% block="Eteindre l'anneau"
     //% group= 'Anneau lumineux'
