@@ -12,7 +12,7 @@
         "main.ts",
         "README.md",
         "custom.ts", 
-        "pxt-PlanetX-AI-strings.json"
+        "pxt-convoyeur-a4-strings.json"
         
     ],
     "testFiles": [
