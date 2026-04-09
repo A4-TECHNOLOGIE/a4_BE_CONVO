@@ -12,7 +12,7 @@
         "main.ts",
         "README.md",
         "custom.ts", 
-        "pxt-convoyeur-a4-strings.json"
+        "_locales/fr/pxt-convoyeur-a4-strings.json"
         
     ],
     "testFiles": [
