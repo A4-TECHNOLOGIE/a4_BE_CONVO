@@ -11,8 +11,7 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "custom.ts",
-        "_locales/fr/strings.json"
+        "custom.ts"
         
     ],
     "testFiles": [
