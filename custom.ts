@@ -399,7 +399,7 @@ namespace convoyeur {
         let strip = create(DigitalPin.P8)
         let color = Colors.Black
         strip.showColor(color)
-    } 
+    }
 
     /**
      * Converts red, green, blue channels into a RGB color
@@ -416,19 +416,7 @@ namespace convoyeur {
     }
 
     function packRGB(a: number, b: number, c: number): number {
-        return ((a & 0xFF) << 8) | ((b & 0xFF) << 16) | (c & 0xFF);
-    }
-    function unpackR(rgb: number): number {
-        let r = (rgb >> 16) & 0xFF;
-        return r;
-    }
-    function unpackG(rgb: number): number {
-        let g = (rgb >> 8) & 0xFF;
-        return g;
-    }
-    function unpackB(rgb: number): number {
-        let b = (rgb) & 0xFF;
-        return b;
+        return (((b & 0xFF) << 16)| (a & 0xFF) << 8) | (c & 0xFF);
     }
 
 
