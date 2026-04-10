@@ -51,7 +51,7 @@ namespace convoyeur {
     //%group='Potentiomètre' color=#E67E91
     //%block="Valeur potentiomètre en pourcentage"
     export function potentiometerValue() {
-        return pins.analogReadPin(AnalogPin.P2)/1024*100
+        return pins.analogReadPin(AnalogPin.P2) / 1024 * 100
     }
 
     //%group='Moteur' color=#86D17B
@@ -399,6 +399,36 @@ namespace convoyeur {
         let strip = create(DigitalPin.P8)
         let color = Colors.Black
         strip.showColor(color)
+    } 
+
+    /**
+     * Converts red, green, blue channels into a RGB color
+     * @param red value of the red channel between 0 and 255. eg: 255
+     * @param green value of the green channel between 0 and 255. eg: 255
+     * @param blue value of the blue channel between 0 and 255. eg: 255
+     */
+    //% color=#D9BA75
+    //% block="Allumer anneau en rouge %red|vert %green|bleu %blue"
+    //% group='Anneau lumineux'
+    export function rgb(red: number, green: number, blue: number) {
+        let strip = create(DigitalPin.P8)
+        strip.showColor(packRGB(red, green, blue));
+    }
+
+    function packRGB(a: number, b: number, c: number): number {
+        return ((a & 0xFF) << 8) | ((b & 0xFF) << 16) | (c & 0xFF);
+    }
+    function unpackR(rgb: number): number {
+        let r = (rgb >> 16) & 0xFF;
+        return r;
+    }
+    function unpackG(rgb: number): number {
+        let g = (rgb >> 8) & 0xFF;
+        return g;
+    }
+    function unpackB(rgb: number): number {
+        let b = (rgb) & 0xFF;
+        return b;
     }
 
 
