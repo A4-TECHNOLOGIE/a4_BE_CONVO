@@ -51,7 +51,7 @@ namespace convoyeur {
     //%group='Potentiomètre' color=#E67E91
     //%block="Valeur potentiomètre en pourcentage"
     export function potentiometerValue() {
-        return pins.analogReadPin(AnalogPin.P2) / 1024 * 100
+        return pins.analogReadPin(AnalogPin.P2) / 1023 * 100
     }
 
     //%group='Moteur' color=#86D17B
