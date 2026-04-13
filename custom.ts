@@ -77,10 +77,10 @@ namespace convoyeur {
     export function setServoAngle(angle: number): void {
         const neZha_address = 0x10
         let iic_buffer = pins.createBuffer(4);
-        iic_buffer[0] = 0x10;
-        iic_buffer[1] = angle;
-        iic_buffer[2] = 0;
-        iic_buffer[3] = 0;
+        iic_buffer[0] = 0x10;  // adresse du destinataire
+        iic_buffer[1] = angle; // l'angle souhaité
+        iic_buffer[2] = 0;     // octets inutilisés mais
+        iic_buffer[3] = 0;     // requis par le protocole du module 
         pins.i2cWriteBuffer(neZha_address, iic_buffer);
     }
 
