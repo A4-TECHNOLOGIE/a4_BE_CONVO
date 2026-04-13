@@ -55,7 +55,7 @@ namespace convoyeur {
     }
 
     //%group='Moteur' color=#86D17B
-    //%block="Activer le moteur à la vitesse %speed %"
+    //%block="Activer le moteur à la vitesse %speed \\%"
     //%speed.min=0 speed.max=100 speed.defl=50 
     export function setMotorSpeed(speed: number) {
         let safeSpeed = Math.max(0, Math.min(100, speed)); //fonction Math.max empêche d'entrer une valeur en dehors de [0;100]
