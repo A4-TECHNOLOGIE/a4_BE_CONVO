@@ -1,4 +1,4 @@
-enum ButtonChoice {
+enum ButtonChoice { // définition des valeurs possibles pour le choix du BP
     A,
     B,
     C,
@@ -20,7 +20,7 @@ namespace convoyeur {
             // Boutons C et D sur P13/P14 : surveillance en arrière-plan
             control.inBackground(function () {
                 let etatPrecedent = 1 // 1 = relâché (PullUp) 
-                const pin = (button == ButtonChoice.C) ? DigitalPin.P13 : DigitalPin.P14
+                const pin = (button == ButtonChoice.C) ? DigitalPin.P13 : DigitalPin.P14 
 
                 while (true) {
                     let etatActuel = pins.digitalReadPin(pin)
