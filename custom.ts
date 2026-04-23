@@ -393,7 +393,7 @@ namespace a4_BE_CONVO {
      * @param blue value of the blue channel between 0 and 255. eg: 255
      */
     //% color=#D9BA75
-    //% block="Allumer anneau en rouge %red|vert %green|bleu %blue"
+    //% block="Allumer l'anneau en rouge %red|vert %green|bleu %blue"
     //% group='Anneau lumineux'
     export function rgb(red: number, green: number, blue: number) {
         let strip = create(DigitalPin.P8)
