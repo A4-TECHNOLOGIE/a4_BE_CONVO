@@ -7,7 +7,7 @@ enum ButtonChoice { // définition des valeurs possibles pour le choix du BP
 
 //% weight=100 color=#EB8AEB icon="\u26a1"
 //% groups="['Boutons Poussoirs', 'Potentiomètre', 'Moteur', 'Servomoteur', 'Ecran OLED', 'Anneau lumineux']"
-namespace convoyeur {
+namespace a4_BE_CONVO {
 
     //%block="Lorsque bouton %button est appuyé"
     //%group='Boutons Poussoirs'
